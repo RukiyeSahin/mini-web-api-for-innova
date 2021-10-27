@@ -10,10 +10,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using mini.API.Controllers;
+using mini.API.Models;
 using mini.API.Security;
 using mini.Data.Data;
 using mini.Data.Repositories;
+using mini.DTO.Mappings;
 using mini.Services.Business;
+using RiskFirst.Hateoas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +41,16 @@ namespace mini.API
 
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ICustomerRepository, EFCustomerRepository>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddLinks(configure =>
+            {
+                configure.AddPolicy<ProductHateoasResponse>(policy =>
+                {
+                    policy.RequireRoutedLink(nameof(ProductsHATEOASController.Get), nameof(ProductsHATEOASController.Get));
+                });
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -76,7 +90,8 @@ namespace mini.API
                 builder.AllowAnyHeader();
             }));
 
-
+            services.AddAutoMapper(typeof(MapplingProfile));
+            //services.Add
 
         }
 

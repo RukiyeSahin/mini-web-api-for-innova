@@ -1,4 +1,5 @@
-﻿using mini.Data.Repositories;
+﻿using AutoMapper;
+using mini.Data.Repositories;
 using mini.DTO.Requests;
 using mini.Models.Entities;
 using System;
@@ -11,27 +12,31 @@ namespace mini.Services.Business
 {
     public class CustomerService : ICustomerService
     {
+        private IMapper mapper;
+
         //SRP: Her class kendi işini yapsın!
         private ICustomerRepository customerRepository;
-        public CustomerService(ICustomerRepository customerRepository)
+        public CustomerService(ICustomerRepository customerRepository, IMapper mapper)
         {
+            this.mapper = mapper;
             this.customerRepository = customerRepository;
         }
 
         public async Task<Guid> AddCustomer(AddCustomerRequest request)
         {
-            Customer customer = new Customer
-            {
-                BirthDate = request.BirthDate,
-                Email = request.Email,
-                FirstName = request.FirstName,
-                Gender = request.Gender,
-                LastName  = request.LastName,
-                Password = request.Password,
-                UserName= request.UserName,
-                Role = request.Role               
+            //Customer customer = new Customer
+            //{
+            //    BirthDate = request.BirthDate,
+            //    Email = request.Email,
+            //    FirstName = request.FirstName,
+            //    Gender = request.Gender,
+            //    LastName  = request.LastName,
+            //    Password = request.Password,
+            //    UserName= request.UserName,
+            //    Role = request.Role               
 
-            };
+            //};
+            var customer = mapper.Map<Customer>(request);
             var result = await customerRepository.AddEntity(customer);
             return result.Id;
 

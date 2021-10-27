@@ -10,12 +10,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="RiskFirst.Hateoas" Version="3.1.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\mini.DTO\mini.DTO.csproj" />
     <ProjectReference Include="..\mini.Services\mini.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="mini\API\Models\" />
   </ItemGroup>
 
 </Project>

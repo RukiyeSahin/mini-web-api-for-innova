@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using mini.Data.Data;
 
 namespace mini.Data.Migrations
 {
     [DbContext(typeof(miniDbContext))]
-    partial class miniDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211027080449_add_category_and_product")]
+    partial class add_category_and_product
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

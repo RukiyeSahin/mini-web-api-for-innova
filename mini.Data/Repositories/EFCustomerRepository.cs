@@ -20,6 +20,7 @@ namespace mini.Data.Repositories
         }
         public async Task<Customer> AddEntity(Customer entity)
         {
+            
             await miniDbContext.Customers.AddAsync(entity);
             var result = await miniDbContext.SaveChangesAsync();
             return entity;
@@ -42,6 +43,11 @@ namespace mini.Data.Repositories
         }
 
         public Task<IAsyncEnumerable<Customer>> GetWihCriteria(Expression<Func<Customer, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> IsItemExists(int id)
         {
             throw new NotImplementedException();
         }

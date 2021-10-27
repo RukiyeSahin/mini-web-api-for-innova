@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace mini.Data.Repositories
 {
-   public interface ICustomerRepository : IProductRepository<Customer>
+    public interface IProductRepository:IProductRepository<Product>
     {
-        Task<Customer> ValidateUser(string userName, string password);
+        Task<Product> SearchProductByName(string name);
     }
 }

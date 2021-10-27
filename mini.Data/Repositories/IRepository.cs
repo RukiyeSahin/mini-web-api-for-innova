@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace mini.Data.Repositories
 {
-    public interface IRepository<T> where T : class, IEntity, new()
+    public interface IProductRepository<T> where T : class, IEntity, new()
     {
         Task<IAsyncEnumerable<T>> GetEntities();
         Task<IAsyncEnumerable<T>> GetWihCriteria(Expression<Func<T, bool>> predicate);
@@ -18,6 +18,8 @@ namespace mini.Data.Repositories
         Task<T> Update(T entity);
 
         Task<int> Delete(T entity);
+
+        Task<bool> IsItemExists(int id);
 
 
 
